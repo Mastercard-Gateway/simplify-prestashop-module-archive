@@ -1,0 +1,138 @@
+div.payment_module { 
+	padding-bottom: 20px; 
+	text-transform: none; 
+}
+
+.simplify_title img { 
+	float: none; 
+	margin-right: 8px; 
+	margin-top: -2px; 
+	vertical-align: middle; 
+}
+
+#simplify-payment-form label { 
+	display: inline-block; 
+	margin-bottom: 4px; 
+	text-transform: uppercase; 
+}
+
+#simplify-payment-form label.lowercase { 
+	text-transform: none; 
+}
+
+#simplify-payment-form input[type="text"], 
+#simplify-payment-form select { 
+	border: #CCCCCC solid 1px; 
+	margin-bottom: 15px; 
+	padding: 3px; 
+}
+
+#simplify-payment-form input[type="checkbox"] { 
+	margin-bottom: 15px; 
+}
+
+#simplify-payment-form input.simplify-card-number { 
+	width: 210px; 
+}
+
+#simplify-payment-form a { 
+	display: inline; 
+	position: relative; 
+}
+
+a.simplify-card-cvc-info { 
+	font-style: italic; 
+}
+
+a.simplify-card-cvc-info div.cvc-info {
+	background-color: #BDE5F8;
+	border: #00529B solid 1px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #00529B!important;
+	display: none;
+	font-style: normal;
+	padding: 8px;
+	position: absolute;
+	right: -320px; top: -10px;
+	text-decoration: none;
+	width: 300px;
+}
+
+a.simplify-card-cvc-info:hover div.cvc-info { 
+	display: block; 
+}
+
+div.cvc-info:hover { 
+	cursor: default; 
+}
+
+.block-left { 
+	display: inline-block; 
+	float: left; 
+	margin-right: 20px; 
+}
+
+img.disable { 
+	opacity: 0.3; 
+}
+
+img.enable { 
+	opacity: 1; 
+}
+
+#simplify-payment-form-cc .simplify-submit-button-cc { 
+	margin-left: 5px; 
+}
+
+#simplify-payment-form .simplify-submit-button, 
+#simplify-payment-form-cc .simplify-submit-button-cc {
+	position:relative;
+	display:inline-block;
+	padding:5px 7px;
+	border:1px solid #cc9900;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-weight:bold;
+	color:#000;
+	background:url(../../themes/default/img/bg_bt.gif) repeat-x 0 0 #f4b61b;
+	cursor: pointer;
+}
+
+#simplify-payment-form .simplify-submit-button:hover, 
+#simplify-payment-form-cc .simplify-submit-button-cc:hover {
+	text-decoration:none;
+	background-position: left -50px
+}
+
+.simplify-payment-errors {
+	margin: 0 0 10px 0;
+	padding: 10px;
+	border: 1px solid #900;
+	font-size: 13px;
+	background: #FCC;
+	display: none;
+}
+
+#simplify-ajax-loader { 
+	display: none; 
+}
+
+#simplify-ajax-loader img { 
+	position: relative;
+	top: 3px;
+	margin-left: 10px;
+}
+
+#simplify-payment-form input, 
+#simplify-payment-form select { 
+	margin-left: 0; 
+}
+
+.secure-icon {
+	position: relative;
+	top: 3px;
+	margin-right: 10px;
+}
