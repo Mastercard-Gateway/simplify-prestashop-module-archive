@@ -13,4 +13,4 @@ This plugin adds Simplify Commerce as a payment option on your PrestaShop checko
 You can manage your Simplify account (view deposits, perform refunds etc.) using the Simplify dashboard at https://www.simplify.com/commerce/.
 
 ## License
-This software is Open Source, released under the BSD 3-Clause license. See [LICENSE.md](LICENSE.md) for more info.
+This software is Open Source, released under the BSD 3-Clause license. See licence.txt for more info.
