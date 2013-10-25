@@ -35,14 +35,20 @@ $(document).ready(function() {
 
 function simplifyResponseHandler(data) {
 	if (data.error) {
+		var errorMessages = {
+			'card.number': 'The credit card number you entered is invalid.',
+			'card.expYear': 'The expiry year on the credit card is invalid.'
+		};
+
 		// Show any validation errors
 		if (data.error.code == "validation") {
 			var fieldErrors = data.error.fieldErrors,
 				fieldErrorsLength = fieldErrors.length,
 				errorList = "";
+
 			for (var i = 0; i < fieldErrorsLength; i++) {
-				errorList += "<div>Field: '" + fieldErrors[i].field +
-					"' is invalid - " + fieldErrors[i].message + "</div>";
+				errorList += "<div>" + errorMessages[fieldErrors[i].field] +
+					" " + fieldErrors[i].message + ".</div>";
 			}
 			// Display the errors
 			$('.simplify-payment-errors').html(errorList);
