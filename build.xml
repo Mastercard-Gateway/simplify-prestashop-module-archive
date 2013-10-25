@@ -41,7 +41,7 @@ SUCH DAMAGE.
     <zip destfile="${dist}/${project-name}.zip"
          basedir="${build}"
 	       includes="*.md *.png **/*"
-         excludes="*.tgz"/>
+         excludes="**/*.tgz"/>
   </target>
 
   <!-- Clean the folder -->
@@ -61,7 +61,7 @@ SUCH DAMAGE.
   <!-- Unpack the SDK & copy src files to the build folder -->
   <target name="prepare" description="Prepares the API and Plugin files">
     <copy todir="${build}/${project-name}">
-      <fileset dir="src" excludes="**/*.png **/*.jpg"/>
+      <fileset dir="src" />
     </copy>
 
     <echo>Unpacking SDK</echo>
