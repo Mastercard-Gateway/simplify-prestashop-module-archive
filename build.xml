@@ -62,6 +62,7 @@ SUCH DAMAGE.
   <target name="prepare" description="Prepares the API and Plugin files">
     <copy todir="${build}/${project-name}">
       <fileset dir="src" />
+      <fileset dir="." includes="README.md" />
     </copy>
 
     <echo>Unpacking SDK</echo>
