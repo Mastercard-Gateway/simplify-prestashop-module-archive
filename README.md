@@ -4,7 +4,7 @@
 This plugin adds Simplify Commerce as a payment option on your PrestaShop checkout page.
 
 ## Installation
-1/ Download a release (simplifycommerce.zip) from the menu option above and install the zip file through the PrestaShop admin panel and enable it.
+1/ If you haven't done so already, download a release (simplifycommerce.zip) from the menu option above and install the zip file through the PrestaShop admin panel and enable it.
 
 2/ Configure the module by adding your API keys on the settings page (Click the 'Configure' link on the module)
 
