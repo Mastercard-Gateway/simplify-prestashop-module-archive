@@ -1,11 +1,9 @@
 <?php
-/*
- * Copyright (c) 2013, MasterCard International Incorporated
- * All rights reserved.
- * 
+/**
+ * Simplify Commerce module to start accepting payments now. It's that simple.
+ *
  * Redistribution and use in source and binary forms, with or without modification, are 
  * permitted provided that the following conditions are met:
- * 
  * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice, this list of 
@@ -24,8 +22,12 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
  * SUCH DAMAGE.
+ *
+ *  @author    MasterCard (support@simplify.com)
+ *  @version   Release: 1.0.1
+ *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
+ *  @license   See licence.txt
  */
-
 
 class Simplify_PaymentsApi
 {
@@ -138,7 +140,7 @@ class Simplify_PaymentsApi
 
         foreach ($from as $key => $value) {
             if (is_array($value) && count(array_keys($value))) {
-                $newClazz = "Simplify_" . ucfirst($key);
+                $newClazz = "Simplify_" . Tools::ucfirst($key);
                 if (!class_exists($newClazz, false)) {
                     $newClazz = 'stdClass';
                 }
@@ -180,7 +182,7 @@ class Simplify_PaymentsApi
             }
             $query = http_build_query($queryParams);
             if ($query != '') {
-                if (strpos($url, '?', strlen($url)) === false) $url .= '?';
+                if (strpos($url, '?', Tools::strlen($url)) === false) $url .= '?';
                 $url .= $query;
             }
 
@@ -198,8 +200,8 @@ class Simplify_PaymentsApi
      */
     public function getMethod($action)
     {
-        if (array_key_exists(strtolower($action), self::$methodMap)) {
-            return self::$methodMap[strtolower($action)];
+        if (array_key_exists(Tools::strtolower($action), self::$methodMap)) {
+            return self::$methodMap[Tools::strtolower($action)];
         }
         return 'GET';
     }
@@ -212,7 +214,7 @@ class Simplify_PaymentsApi
         $http = new Simplify_HTTP();
 
         return $http->apiRequest($this->getUrl($authentication->publicKey, $action, $object), $this->getMethod($action),
-            $authentication, json_encode($object->getProperties()));
+            $authentication, Tools::jsonEncode($object->getProperties()));
     }
 
     /**
@@ -224,7 +226,7 @@ class Simplify_PaymentsApi
 
         $data = $http->jwsDecode($authentication, $hash);
 
-        return json_decode($data, true);
+        return Tools::jsonDecode($data, true);
     }
 
     /**
@@ -250,7 +252,7 @@ class Simplify_PaymentsApi
      */
     private function endsWith($s, $c)
     {
-        return substr($s, -strlen($c)) == $c;
+        return Tools::substr($s, -Tools::strlen($c)) == $c;
     }
 
     /**
@@ -265,7 +267,7 @@ class Simplify_PaymentsApi
      * @param $expectedArgCount
      * @return Simplify_Authentication
      */
-    static function buildAuthenticationObject($authentication = null, $args, $expectedArgCount){
+    static public function buildAuthenticationObject($authentication = null, $args, $expectedArgCount){
 
         if(sizeof($args) > $expectedArgCount) {
             $authentication = new Simplify_Authentication($args[$expectedArgCount-1], $args[$expectedArgCount]);

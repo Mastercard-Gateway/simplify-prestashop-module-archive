@@ -1,11 +1,9 @@
 <?php
-/*
- * Copyright (c) 2013, MasterCard International Incorporated
- * All rights reserved.
- * 
+/**
+ * Simplify Commerce module to start accepting payments now. It's that simple.
+ *
  * Redistribution and use in source and binary forms, with or without modification, are 
  * permitted provided that the following conditions are met:
- * 
  * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice, this list of 
@@ -24,8 +22,12 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
  * SUCH DAMAGE.
+ *
+ *  @author    MasterCard (support@simplify.com)
+ *  @version   Release: 1.0.1
+ *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
+ *  @license   See licence.txt
  */
-
 
 class Simplify_HTTP
 {
@@ -68,11 +70,11 @@ class Simplify_HTTP
             throw new InvalidArgumentException('Must have a valid API key to connect to the API');
         }
 
-        if (!array_key_exists(strtolower($method), self::$_validMethods)) {
-            throw new InvalidArgumentException('Invalid method: '.strtolower($method));
+        if (!array_key_exists(Tools::strtolower($method), self::$_validMethods)) {
+            throw new InvalidArgumentException('Invalid method: '.Tools::strtolower($method));
         }
 
-        $method = self::$_validMethods[strtolower($method)];
+        $method = self::$_validMethods[Tools::strtolower($method)];
 
         $curl = curl_init();
 
@@ -115,12 +117,11 @@ class Simplify_HTTP
             throw new Simplify_ApiConnectionException(curl_error($curl));
         }
 
-        $object = json_decode($data, true);
+        $object = Tools::jsonDecode($data, true);
                                      //'typ' => self::JWS_TYPE,
         $response = array('status' => $status, 'object' => $object);
 
         return $response;
-        curl_close($curl);
     }
 
     /**
@@ -287,7 +288,7 @@ class Simplify_HTTP
             $jws_hdr[self::JWS_HDR_TOKEN] = $authentication->accessToken;
         }
 
-        $header = $this->jwsUrlSafeEncode64(json_encode($jws_hdr));
+        $header = $this->jwsUrlSafeEncode64(Tools::jsonEncode($jws_hdr));
 
         if ($hasPayload) {
             $payload = $this->jwsUrlSafeEncode64($payload);
@@ -308,7 +309,7 @@ class Simplify_HTTP
 
     private function jwsVerifyHeader($header, $url, $publicKey) {
 
-	    $hdr = json_decode($header, true);
+	    $hdr = Tools::jsonDecode($header, true);
 
 	    if (count($hdr) != self::JWS_NUM_HEADERS) {
 		    $this->jwsAuthError("Incorrect number of JWS header parameters - found " . count($hdr) . " required " . self::JWS_NUM_HEADERS);
@@ -384,7 +385,7 @@ class Simplify_HTTP
 
     private function jwsUrlSafeDecode64($s) {
 
-        switch (strlen($s) % 4) {
+        switch (Tools::strlen($s) % 4) {
             case 0: break;
             case 2: $s = $s . "==";
                     break;

@@ -1,11 +1,9 @@
 <?php
-/*
- * Copyright (c) 2013, MasterCard International Incorporated
- * All rights reserved.
- * 
+/**
+ * Simplify Commerce module to start accepting payments now. It's that simple.
+ *
  * Redistribution and use in source and binary forms, with or without modification, are 
  * permitted provided that the following conditions are met:
- * 
  * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice, this list of 
@@ -24,8 +22,12 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
  * SUCH DAMAGE.
+ *
+ *  @author    MasterCard (support@simplify.com)
+ *  @version   Release: 1.0.1
+ *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
+ *  @license   See licence.txt
  */
-
 
 class Simplify_Customer extends Simplify_Object {
     /**
@@ -83,7 +85,7 @@ class Simplify_Customer extends Simplify_Object {
             $args = func_get_args();
             $authentication = Simplify_PaymentsApi::buildAuthenticationObject($authentication, $args, 1);
 
-            $obj = Simplify_PaymentsApi::deleteObject($this, $authentication);
+            Simplify_PaymentsApi::deleteObject($this, $authentication);
             $this->properties = null;
             return true;
         }

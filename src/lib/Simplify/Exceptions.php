@@ -1,11 +1,9 @@
 <?php
-/*
- * Copyright (c) 2013, MasterCard International Incorporated
- * All rights reserved.
- * 
+/**
+ * Simplify Commerce module to start accepting payments now. It's that simple.
+ *
  * Redistribution and use in source and binary forms, with or without modification, are 
  * permitted provided that the following conditions are met:
- * 
  * Redistributions of source code must retain the above copyright notice, this list of 
  * conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice, this list of 
@@ -24,8 +22,12 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
  * SUCH DAMAGE.
+ *
+ *  @author    MasterCard (support@simplify.com)
+ *  @version   Release: 1.0.1
+ *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
+ *  @license   See licence.txt
  */
-
 
 /**
  *
@@ -43,7 +45,7 @@ class Simplify_ApiException extends Exception
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message);
 
         $this->status = $status;
@@ -72,7 +74,7 @@ class Simplify_ApiException extends Exception
      * Returns a map of all error data returned by the API.
      * @return array a map containing API error data.
      */
-    function getErrorData() {
+    public function getErrorData() {
         return $this->errorData;
     }
 
@@ -80,7 +82,7 @@ class Simplify_ApiException extends Exception
      * Returns the HTTP status for the request.
      * @return string HTTP status code (or null if there is no status).
      */
-    function getStatus() {
+    public function getStatus() {
         return $this->status;
     }
     
@@ -88,7 +90,7 @@ class Simplify_ApiException extends Exception
      * Returns unique reference for the API error.
      * @return string a reference (or null if there is no reference).
      */
-    function getReference() {
+    public function getReference() {
         return $this->reference;
     }
 
@@ -96,7 +98,7 @@ class Simplify_ApiException extends Exception
      * Returns an code for the API error.
      * @return string the error code.
      */
-    function getErrorCode() {
+    public function getErrorCode() {
         return $this->errorCode;
     }
 
@@ -104,7 +106,7 @@ class Simplify_ApiException extends Exception
      * Returns a description of the error.
      * @return string Description of the error.
      */
-    function describe() {
+    public function describe() {
         return get_class($this) . ": \"" 
             . $this->getMessage() . "\" (status: "
             . $this->getStatus() . ", error code: "
@@ -123,7 +125,7 @@ class Simplify_ApiConnectionException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
     }
 }
@@ -136,7 +138,7 @@ class Simplify_AuthenticationException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
     }
 }
@@ -151,7 +153,7 @@ class Simplify_BadRequestException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
 
         $fieldErrors = array();
@@ -174,8 +176,7 @@ class Simplify_BadRequestException extends Simplify_ApiException {
      * Returns a boolean indicating whether there are any field errors.
      * @return boolean true if there are field errors; false otherwise.
      */
-    function hasFieldErrors() {
-        return true;
+    public function hasFieldErrors() {
         return count($this->fieldErrors) > 0;
     }
 
@@ -183,7 +184,7 @@ class Simplify_BadRequestException extends Simplify_ApiException {
      * Returns a list containing all field errors.
      * @return array list of field errors.
      */
-    function getFieldErrors() {
+    public function getFieldErrors() {
         return $this->fieldErrors;
     }
 
@@ -191,7 +192,7 @@ class Simplify_BadRequestException extends Simplify_ApiException {
      * Returns a description of the error.
      * @return string description of the error.
      */
-    function describe() {
+    public function describe() {
         $s = parent::describe();
         foreach ($this->getFieldErrors() as $fieldError) {
             $s = $s . "\n" . (string) $fieldError;
@@ -213,7 +214,7 @@ class Simplify_FieldError {
     /**
      * @ignore
      */
-    function __construct($errorData) {
+    public function __construct($errorData) {
     
         $this->field = $errorData['field'];
         $this->code = $errorData['code'];
@@ -224,7 +225,7 @@ class Simplify_FieldError {
      * Returns the name of the field with the error.
      * @return string the field name.
      */
-    function getFieldName() {
+    public function getFieldName() {
         return $this->field;
     }
 
@@ -232,7 +233,7 @@ class Simplify_FieldError {
      * Returns the code for the error.
      * @return string the error code.
      */
-    function getErrorCode() {
+    public function getErrorCode() {
         return $this->code;
     }
 
@@ -240,12 +241,11 @@ class Simplify_FieldError {
      * Returns a description of the error.
      * @return string description of the error.
      */
-    function getMessage() {
+    public function getMessage() {
         return $this->message;
     }
 
-
-    function __toString() {
+    public function __toString() {
         return "Field error: " . $this->getFieldName() . "\"" . $this->getMessage() . "\" (" . $this->getErrorCode() . ")";
     }
 
@@ -259,7 +259,7 @@ class Simplify_ObjectNotFoundException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
     }
 }
@@ -272,7 +272,7 @@ class Simplify_NotAllowedException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
     }
 }
@@ -285,7 +285,7 @@ class Simplify_SystemException extends Simplify_ApiException {
     /**
      * @ignore
      */
-    function __construct($message, $status = null, $errorData = null) {
+    public function __construct($message, $status = null, $errorData = null) {
         parent::__construct($message, $status, $errorData);
     }
 }

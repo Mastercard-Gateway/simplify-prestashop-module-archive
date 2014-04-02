@@ -1,5 +1,4 @@
-<?php
-/**
+{*
  * Simplify Commerce module to start accepting payments now. It's that simple.
  *
  * Redistribution and use in source and binary forms, with or without modification, are 
@@ -27,14 +26,11 @@
  *  @version   Release: 1.0.1
  *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
  *  @license   See licence.txt
- */
-
-include(dirname(__FILE__).'/../../config/config.inc.php');
-include(dirname(__FILE__).'/../../init.php');
-include(dirname(__FILE__).'/simplifycommerce.php');
-
-if (!defined('_PS_VERSION_'))
-	exit;
-
-$simplify = new SimplifyCommerce();
-$simplify->processPayment();
+ *}
+{if $simplify_order.valid == 1}
+	<div class="conf confirmation">{l s='Congratulations, your payment has been approved and your order has been saved under the reference' mod='simplifycommerce'} <b>{$simplify_order.reference|escape:html:'UTF-8'}</b>.</div>
+{else}
+	<div class="error">{l s='Sorry, unfortunately an error occured during the transaction.' mod='simplifycommerce'}<br /><br />
+	{l s='Please double-check your credit card details and try again or feel free to contact us to resolve this issue.' mod='simplifycommerce'}<br /><br />
+	({l s='Your Order\'s Reference:' mod='simplifycommerce'} <b>{$simplify_order.reference|escape:html:'UTF-8'}</b>)</div>
+{/if}
