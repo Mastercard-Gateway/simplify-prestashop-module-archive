@@ -616,7 +616,7 @@ class SimplifyCommerce extends PaymentModule
 		<div class="w-container features item">
 		<img class="features item icon" src="//www.simplify.com/commerce/static/images/feature_price.jpg" alt="feature_signup.jpg">
 		<h1 class="features item h1">Simple pricing</h1>
-		<p>No setup fees.<br>No monthly fees.<br>No hassle.</p>
+		<p>No setup fees.<br>No monthly fees.<br>No minimum.</p>
 		</div>
 		</div>
 		<div class="marketing left">
@@ -655,25 +655,17 @@ class SimplifyCommerce extends PaymentModule
 			<form action="'.Tools::safeOutput($_SERVER['REQUEST_URI']).'" method="post">
 			<section class="simplify-settings">
 			<h2>API Key Mode</h2>
-			<div class="account-mode container">
+			<div class="half container">
 			<div class="keyModeContainer">
-			<input type="radio" name="simplify_mode" value="0"'.(!Configuration::get('SIMPLIFY_MODE') ? ' checked="checked"' : '').' /><span>Test Mode</span>
-			<input type="radio" name="simplify_mode" value="1"'.(Configuration::get('SIMPLIFY_MODE') ? ' checked="checked"' : '').' /><span>Live Mode</span>
+			<input class="radioInput" type="radio" name="simplify_mode" value="0"'.(!Configuration::get('SIMPLIFY_MODE') ? ' checked="checked"' : '').' /><span>Test Mode</span>
+			<input class="radioInput" type="radio" name="simplify_mode" value="1"'.(Configuration::get('SIMPLIFY_MODE') ? ' checked="checked"' : '').' /><span>Live Mode</span>
 			</div>
-			<p><div class="bold">Test Mode</div> All transactions made in this mode are not real payments and test card numbers will only be processed. You can test different card numbers from our <a href="https://www.simplify.com/commerce/docs/tutorial/index#testing" target="_blank">list of test card numbers</a>.</p>
-			<p><div class="bold">Live Mode</div> All transactions made in this mode are real payments and will be processed accordingly.</p>
+			<p><div class="bold">Test Mode</div> All transactions in test mode are test payments. You can test your installation using card numbers from our <a href="https://www.simplify.com/commerce/docs/tutorial/index#testing" target="_blank">list of test card numbers</a>. You cannot process real payments in test mode, so all other card numbers will be declined.</p>
+			<p><div class="bold">Live Mode</div> All transactions made in live mode are real payments and will be processed accordingly.</p>
 			</div>
-			<h2>Save Customer Details</h2>
+			<h2>Set Your API Keys</h2>
 			<div class="account-mode container">
-			<p>Enable customers to save their card details securely on Simplify\'s servers.</p>
-			<div class="saveCustomerDetailsContainer">
-			<input type="radio" name="simplify_save_csutomer_details" value="1"'.(Configuration::get('SIMPLIFY_SAVE_CUSTOMER_DETAILS') ? ' checked="checked"' : '').' /><span>Yes</span>
-			<input type="radio" name="simplify_save_csutomer_details" value="0"'.(!Configuration::get('SIMPLIFY_SAVE_CUSTOMER_DETAILS') ? ' checked="checked"' : '').' /><span>No</span>
-			</div>
-			</div>
-			<h2>Set your API Keys</h2>
-			<div class="account-mode container">
-			<p>If you have not done so already, you can create an account by clicking the \'Sign up for free\' button above.<br />You can then obtain your API Keys from: Account Settings -> API Keys</p>
+			<p>If you have not already done so, you can create an account by clicking the \'Sign up for free\' button in the top right corner.<br />Obtain both your private and public API Keys from: Account Settings -> API Keys and supply them below.</p>
 			</div>	
 			<div class="clearfix api-key-container">
 			<div class="clearfix api-key-title">
@@ -706,14 +698,26 @@ class SimplifyCommerce extends PaymentModule
 			</div>
 			</div>
 			</div>
-			<div class="container">';
+			<div class="clearfix">
+			<div class="left half">
+			<h2>Save Customer Details</h2>
+			<div class="account-mode container">
+			<p>Enable customers to save their card details securely on Simplify\'s servers for future transactions.</p>
+			<div class="saveCustomerDetailsContainer">
+			<input class="radioInput" type="radio" name="simplify_save_csutomer_details" value="1"'.(Configuration::get('SIMPLIFY_SAVE_CUSTOMER_DETAILS') ? ' checked="checked"' : '').' /><span>Yes</span>
+			<input class="radioInput" type="radio" name="simplify_save_csutomer_details" value="0"'.(!Configuration::get('SIMPLIFY_SAVE_CUSTOMER_DETAILS') ? ' checked="checked"' : '').' /><span>No</span>
+			</div>
+			</div>
+			</div>
+			<div class="half container left">';
 
-			$statuses_options = array(array('name' => 'simplify_payment_status', 'label' => $this->l('Order status in case of sucessfull payment:'), 'current_value' => Configuration::get('SIMPLIFY_PAYMENT_ORDER_STATUS')));
+			$statuses_options = array(array('name' => 'simplify_payment_status', 'label' => $this->l('Sucessful Payment Order Status'), 'current_value' => Configuration::get('SIMPLIFY_PAYMENT_ORDER_STATUS')));
 
 			foreach ($statuses_options as $status_options)
 			{
 				$output .= '
-				<h4>'.$status_options['label'].'</h4>
+				<h2>'.$status_options['label'].'</h2>
+				<p>Choose the status for an order once the payment has been successfully processed by Simplify.</p>
 				<div>
 				<select name="'.$status_options['name'].'">';
 				foreach ($statuses as $status)
@@ -724,13 +728,12 @@ class SimplifyCommerce extends PaymentModule
 			}
 
 			$output .= '
-			<div><input type="submit" class="settings-btn btn right" name="SubmitSimplify" value="Save Settings" /></div>
+			<div>
 			</div>
+			</div>
+			</div>
+			<div class="clearfix"><input type="submit" class="settings-btn btn right" name="SubmitSimplify" value="Save Settings" /></div></div>
 			</section>
-			<div class="clear"></div>
-			<br />
-
-			</div>
 			</form>
 			</div>
 			<script type="text/javascript">

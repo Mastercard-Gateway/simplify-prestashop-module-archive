@@ -73,6 +73,10 @@
 .marketing {
 	width: 33%;
 	text-align: center;
+	padding: 0 15px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .marketing h1 {
@@ -170,16 +174,19 @@
 	color: white;
 }
 
-.account-mode {
-	padding-bottom: 10px;
+.half {
+	width: 48%;
 }
 
-.account-mode input{
+.radioInput{
 	margin: 10px;
 }
 
 .container {
-	margin: 0 10px;
+	padding: 0 15px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .msg-container {
@@ -233,9 +240,6 @@
 	top: -20px;
 }
 
-.formContainer form p {
-	width: 50%;
-}
 .section {
 	background-color: #FFF;
 	border: 1px solid #CCC;
@@ -251,7 +255,6 @@
 }
 
 .keyModeContainer, .saveCustomerDetailsContainer {
-	width: 50%;
 	text-align: center;
 	background-color: #FAFAFA;
 	padding: 5px;
