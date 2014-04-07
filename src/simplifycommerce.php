@@ -596,12 +596,12 @@ class SimplifyCommerce extends PaymentModule
 		<div class="simplify-module-wrapper">
 		'.(Tools::isSubmit('SubmitSimplify') ? '<div class="conf confirmation">'.$this->l('Settings successfully saved').'<img src="http://www.prestashop.com/modules/'.$this->name.'.png?api_user='.urlencode($_SERVER['HTTP_HOST']).'" style="display: none;" /></div>' : '').'
 		<div class="simplify-module-header">
-		<a href="https://www.simplify.com/commerce/login/signup" target="_blank" class="left"><img class="logo" src="//www.simplify.com/commerce/static/images/app-logo-pos.png" alt="Simplify Commerce Logo" width="150" height="64"></a>
+		<a href="https://www.simplify.com/" target="_blank" class="left"><img class="logo" src="//www.simplify.com/commerce/static/images/app-logo-pos.png" alt="Simplify Commerce Logo" width="150" height="64"></a>
 		<div class="header-title left">
 		<h1>Start accepting payments now.</h1>
 		<h2>It’s that simple.</h2>
 		</div>
-		<a href="https://www.simplify.com/commerce/login/signup" target="_blank" class="btn right"><span>Sign up for free</span></a>
+		<a href="https://www.simplify.com/commerce/login/merchantSignup" target="_blank" class="btn right"><span>Sign up for free</span></a>
 		</div>
 		<div class="section">
 		<div class="clearfix">
