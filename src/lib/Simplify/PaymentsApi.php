@@ -135,7 +135,7 @@ class SimplifyPaymentsApi
 		$clazz = 'stdClass';
 		$to_clazz = 'Simplify'.$to_clazz;
 		if ('stdClass' != $to_clazz && class_exists("{$to_clazz}", false))
-			$clazz = '{$to_clazz}';
+			$clazz = "{$to_clazz}";
 
 		$object = new $clazz();
 
