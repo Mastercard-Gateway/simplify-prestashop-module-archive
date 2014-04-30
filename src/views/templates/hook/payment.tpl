@@ -28,8 +28,8 @@
  *  @license   See licence.txt
  *}
 <script>
-	var simplifyPublicKey = "{$simplify_public_key}";
-	var cardholderDetails = {$cardholder_details};
+	var simplifyPublicKey = "{$simplify_public_key|escape}", 
+	simplifyFirstname = "{$firstname|escape}", simplifyLastname = "{$lastname|escape}", simplifyCity = "{$city|escape}", simplifyAddress1 = "{$address1|escape}", simplifyAddress2 = "{$address2|escape}", simplifyState = "{$state|escape}", simplifyPostcode = "{$postcode|escape}";
 </script>
 <div class="simplifyFormContainer">
 	<h3><img alt="Secure Icon" class="secure-icon" src="{$module_dir|escape}img/secure-icon.png" />Pay by Credit Card <span id="simplify-test-mode-msg" style="display:none;"><img alt="Secure Icon" class="warning-icon" src="{$module_dir|escape}img/warning.png" /> This is a test payment</span></h3>
@@ -87,7 +87,7 @@
 				</div>
 		{/if}		
 				<div id="simplify-cc-details" {if isset($show_saved_card_details)} style="display: none;"{/if} {if isset($show_saved_card_details)} class="indent"{/if}>
-					<div class="simplify-payment-errors">{if isset($smarty.get.simplify_error)}{$smarty.get.simplify_error|base64_decode|escape:html:'UTF-8'}{/if}</div><a name="simplify_error" style="display:none"></a>
+					<div class="simplify-payment-errors">{if isset($smarty.get.simplify_error)}{$smarty.get.simplify_error|escape:html:'UTF-8'}{/if}</div><a name="simplify_error" style="display:none"></a>
 					<label>Card Number</label><br />
 					<input type="text" size="20" autocomplete="off" class="simplify-card-number" autofocus />
 					<div>

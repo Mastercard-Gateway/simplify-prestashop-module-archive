@@ -516,5 +516,5 @@ img.enable {
 	color: #555;
 	margin-left: 10px;
 	font-size: 11px;
-	text-transform: capitalize;
+	/*text-transform: capitalize;*/
 }

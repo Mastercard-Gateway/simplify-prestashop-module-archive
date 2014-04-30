@@ -138,12 +138,12 @@ $(document).ready(function() {
 					cvc: $(".simplify-card-cvc").val(),
 					expMonth: $("#simplify-cc-details select[name='Date_Month'").val(),
 					expYear: $("#simplify-cc-details select[name='Date_Year'").val().substring(2),
-					name: getCardHolderDetail('firstname') + ' ' + getCardHolderDetail('lastname'),
-					addressCity: getCardHolderDetail('city'),
-					addressLine1: getCardHolderDetail('address2'),
-					addressLin2: getCardHolderDetail('address2'),
-					addressState: getCardHolderDetail('state'),
-					addressZip: getCardHolderDetail('postcode')
+					name: simplifyFirstname + ' ' + simplifyLastname,
+					addressCity: simplifyCity,
+					addressLine1: simplifyAddress1,
+					addressLine2: simplifyAddress2,
+					addressState: simplifyState,
+					addressZip: simplifyPostcode
 				}
 			}, simplifyResponseHandler);
 

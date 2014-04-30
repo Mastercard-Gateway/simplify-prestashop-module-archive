@@ -12,7 +12,7 @@
  * Neither the name of the MasterCard International Incorporated nor the names of its 
  * contributors may be used to endorse or promote products derived from this software 
  * without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
  * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
@@ -30,53 +30,58 @@
  */
 
 /**
- * Simplify_Authentication - encapsulates the credentials needed to make a request to the Simplify API.
+ * SimplifyAuthentication - encapsulates the credentials needed to make a request to the Simplify API.
  *
- * <p>$publicKey - this is your API public key
- * <p>$privateKey - this is your API private key
- * <p>$accessToken - Oauth access token that is needed to make API requests on behalf of another user
+ * <p>$public_key - this is your API public key
+ * <p>$private_key - this is your API private key
+ * <p>$access_token - Oauth access token that is needed to make API requests on behalf of another user
  * <p>
  * <p>
- * <code>new Simplify_Authentication($accessToken)</code>
- *
- * <p>
- * <code>new Simplify_Authentication($publicKey, $privateKey)</code>
+ * <code>new SimplifyAuthentication($access_token)</code>
  *
  * <p>
- * <code>new Simplify_Authentication($publicKey, $privateKey, $accessToken)</code>
+ * <code>new SimplifyAuthentication($public_key, $private_key)</code>
+ *
+ * <p>
+ * <code>new SimplifyAuthentication($public_key, $private_key, $access_token)</code>
  */
-class Simplify_Authentication {
+class SimplifyAuthentication {
 
-    public $privateKey;
-    public $publicKey;
-    public $accessToken;
+	public $private_key;
+	public $public_key;
+	public $access_token;
 
-    public function __construct() {
-        $args = func_get_args();
-        switch( func_num_args() ) {
-            case 1:
-                self::__construct1( $args[0] );
-                break;
-            case 2:
-                self::__construct2( $args[0], $args[1] );
-                break;
-            case 3:
-                self::__construct3( $args[0], $args[1], $args[2] );
-        }
-    }
+	public function __construct()
+	{
+		$args = func_get_args();
+		switch (func_num_args())
+		{
+			case 1:
+				self::construct1( $args[0] );
+				break;
+			case 2:
+				self::construct2( $args[0], $args[1] );
+				break;
+			case 3:
+				self::construct3( $args[0], $args[1], $args[2] );
+		}
+	}
 
-    private function __construct1($accessToken) {
-        $this->accessToken = $accessToken;
-    }
+	private function construct1($access_token)
+	{
+		$this->access_token = $access_token;
+	}
 
-    private function __construct2($publicKey, $privateKey) {
-        $this->publicKey = $publicKey;
-        $this->privateKey = $privateKey;
-    }
+	private function construct2($public_key, $private_key)
+	{
+		$this->public_key = $public_key;
+		$this->private_key = $private_key;
+	}
 
-    private function __construct3($publicKey, $privateKey, $accessToken) {
-        $this->publicKey = $publicKey;
-        $this->privateKey = $privateKey;
-        $this->accessToken = $accessToken;
-    }
+	private function construct3($public_key, $private_key, $access_token)
+	{
+		$this->public_key = $public_key;
+		$this->private_key = $private_key;
+		$this->access_token = $access_token;
+	}
 }

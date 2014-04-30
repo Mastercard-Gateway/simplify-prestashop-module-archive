@@ -12,7 +12,7 @@
  * Neither the name of the MasterCard International Incorporated nor the names of its 
  * contributors may be used to endorse or promote products derived from this software 
  * without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
  * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
@@ -30,17 +30,17 @@
  */
 
 /**
- * Class Simplify_ResourceList represents a collection of domain objects returned by one of the list<Domain>() methods.
+ * Class SimplifyResourceList represents a collection of domain objects returned by one of the list<Domain>() methods.
  */
-class Simplify_ResourceList {
+class SimplifyResourceList {
 
-    /**
-     * @var array $list the list of domain objects.
-     */
-    public $list = array();
+	/**
+	 * @var array $list the list of domain objects.
+	 */
+	public $list = array();
 
-    /**
-     * @var int $total the total number of object available.
-     */
-    public $total = 0;
+	/**
+	 * @var int $total the total number of object available.
+	 */
+	public $total = 0;
 }

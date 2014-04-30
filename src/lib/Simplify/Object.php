@@ -12,7 +12,7 @@
  * Neither the name of the MasterCard International Incorporated nor the names of its 
  * contributors may be used to endorse or promote products derived from this software 
  * without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
  * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
@@ -32,50 +32,53 @@
 /**
  * Base class for all domain objects.
  */
-class Simplify_Object {
+class SimplifyObject {
 
-    private $properties = array();
+	private $properties = array();
 
-    /**
-     * @ignore
-     */
-    public function __get($key) {
-        if (array_key_exists($key, $this->properties)) {
-            return $this->properties[$key];
-        } else {
-            return null;
-        }
-    }
+	/**
+	 * @ignore
+	 */
+	public function __get($key)
+	{
+		if (array_key_exists($key, $this->properties))
+			return $this->properties[$key];
+		else
+			return null;
+	}
 
-    /**
-     * @ignore
-     */
-    public function __set($key, $value) {
-        $this->properties[$key] = $value;
-    }
+	/**
+	 * @ignore
+	 */
+	public function __set($key, $value)
+	{
+		$this->properties[$key] = $value;
+	}
 
-    /**
-     * Updates the object's properties with the values in the specified map.
-     * @param $hash array Map of values to set.
-     */
-    public function setAll($hash) {
-        foreach ($hash as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+	/**
+	 * Updates the object's properties with the values in the specified map.
+	 * @param $hash array Map of values to set.
+	 */
+	public function setAll($hash)
+	{
+		foreach ($hash as $key => $value)
+			$this->$key = $value;
+	}
 
-    /**
-     * @ignore
-     */
-    public function __toString() {
-        return Tools::jsonEncode($this->properties);
-    }
+	/**
+	 * @ignore
+	 */
+	public function __toString()
+	{
+		return Tools::jsonEncode($this->properties);
+	}
 
-    /**
-     * Returns the object's properties as a map.
-     * @return array map of properties.
-     */
-    public function getProperties() {
-        return $this->properties;
-    }
+	/**
+	 * Returns the object's properties as a map.
+	 * @return array map of properties.
+	 */
+	public function getProperties()
+	{
+		return $this->properties;
+	}
 }

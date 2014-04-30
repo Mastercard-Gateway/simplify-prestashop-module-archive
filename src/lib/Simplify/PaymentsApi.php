@@ -12,7 +12,7 @@
  * Neither the name of the MasterCard International Incorporated nor the names of its 
  * contributors may be used to endorse or promote products derived from this software 
  * without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
  * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
@@ -29,264 +29,267 @@
  *  @license   See licence.txt
  */
 
-class Simplify_PaymentsApi
+class SimplifyPaymentsApi
 {
 
-    /**
-     * @ignore
-     */
-    public static $methodMap = array(
-        'create' => 'POST',
-        'delete' => 'DELETE',
-        'list' => 'GET',
-        'show' => 'GET',
-        'update' => 'PUT'
-    );
+	/**
+	 * @ignore
+	 */
+	public static $method_map = array(
+		'create' => 'POST',
+		'delete' => 'DELETE',
+		'list' => 'GET',
+		'show' => 'GET',
+		'update' => 'PUT'
+	);
 
-    /**
-     * @ignore
-     */
-    static public function createObject($object, $authentication = null)
-    {
-        $paymentsApi = new Simplify_PaymentsApi();
+	/**
+	 * @ignore
+	 */
+	public static function createObject($object, $authentication = null)
+	{
+		$payments_api = new SimplifyPaymentsApi();
 
-        $jsonObject = $paymentsApi->execute("create", $object, $authentication);
+		$json_object = $payments_api->execute('create', $object, $authentication);
 
-        $o = $paymentsApi->convertFromHashToObject($jsonObject, $object->getClazz());
+		$o = $payments_api->convertFromHashToObject($json_object, $object->getClazz());
 
-        return $o;
-    }
+		return $o;
+	}
 
-    /**
-     * @ignore
-     */
-    static public function findObject($object, $authentication = null)
-    {
-        $paymentsApi = new Simplify_PaymentsApi();
+	/**
+	 * @ignore
+	 */
+	public static function findObject($object, $authentication = null)
+	{
+		$payments_api = new SimplifyPaymentsApi();
 
-        $jsonObject = $paymentsApi->execute("show", $object, $authentication);
-        $o = $paymentsApi->convertFromHashToObject($jsonObject, $object->getClazz());
+		$json_object = $payments_api->execute('show', $object, $authentication);
+		$o = $payments_api->convertFromHashToObject($json_object, $object->getClazz());
 
-        return $o;
-    }
+		return $o;
+	}
 
-    /**
-     * @ignore
-     */
-    static public function updateObject($object, $authentication = null) {
-        $paymentsApi = new Simplify_PaymentsApi();
+	/**
+	 * @ignore
+	 */
+	public static function updateObject($object, $authentication = null)
+	{
+		$payments_api = new SimplifyPaymentsApi();
 
-        $jsonObject = $paymentsApi->execute("update", $object, $authentication);
-        $o = $paymentsApi->convertFromHashToObject($jsonObject, $object->getClazz());
+		$json_object = $payments_api->execute('update', $object, $authentication);
+		$o = $payments_api->convertFromHashToObject($json_object, $object->getClazz());
 
-        return $o;
-    }
+		return $o;
+	}
 
-    /**
-     * @ignore
-     */
-    static public function deleteObject($object, $authentication = null) {
-        $paymentsApi = new Simplify_PaymentsApi();
+	/**
+	 * @ignore
+	 */
+	public static function deleteObject($object, $authentication = null)
+	{
+		$payments_api = new SimplifyPaymentsApi();
 
-        $jsonObject = $paymentsApi->execute("delete", $object, $authentication);
+		$json_object = $payments_api->execute('delete', $object, $authentication);
 
-        return $jsonObject;
-    }
+		return $json_object;
+	}
 
-    /**
-     * @ignore
-     */
-    static public function listObject($object, $criteria = null, $authentication =null) {
-        if ($criteria != null) {
-            if (isset($criteria['max'])) {
-                $object->max = $criteria['max'];
-            }
-            if (isset($criteria['offset'])) {
-                $object->offset = $criteria['offset'];
-            }
-            if (isset($criteria['sorting'])) {
-                $object->sorting = $criteria['sorting'];
-            }
-            if (isset($criteria['filter'])) {
-                $object->filter = $criteria['filter'];
-            }
-        }
+	/**
+	 * @ignore
+	 */
+	public static function listObject($object, $criteria = null, $authentication = null)
+	{
+		if ($criteria != null)
+		{
+			if (isset($criteria['max']))
+				$object->max = $criteria['max'];
+			if (isset($criteria['offset']))
+				$object->offset = $criteria['offset'];
+			if (isset($criteria['sorting']))
+				$object->sorting = $criteria['sorting'];
+			if (isset($criteria['filter']))
+				$object->filter = $criteria['filter'];
+		}
 
-        $paymentsApi = new Simplify_PaymentsApi();
-        $jsonObject = $paymentsApi->execute("list", $object, $authentication);
+		$payments_api = new SimplifyPaymentsApi();
+		$json_object = $payments_api->execute('list', $object, $authentication);
 
-        $ret = new Simplify_ResourceList();
-        if (array_key_exists('list', $jsonObject) & is_array($jsonObject['list'])) {
-            foreach ($jsonObject['list'] as $obj) {
-                array_push($ret->list, $paymentsApi->convertFromHashToObject($obj, $object->getClazz()));
-            }
-            $ret->total = $jsonObject['total'];
-        }
+		$ret = new SimplifyResourceList();
+		if (array_key_exists('list', $json_object) & is_array($json_object['list']))
+		{
+			foreach ($json_object['list'] as $obj)
+				array_push($ret->list, $payments_api->convertFromHashToObject($obj, $object->getClazz()));
 
-        return $ret;
-    }
+			$ret->total = $json_object['total'];
+		}
 
-    /**
-     * @ignore
-     */
-    public function convertFromHashToObject($from, $toClazz)
-    {
-        $clazz = 'stdClass';
-        $toClazz = "Simplify_" . $toClazz;
-        if ("stdClass" != $toClazz && class_exists("{$toClazz}", false)) {
-            $clazz = "{$toClazz}";
-        }
-        $object = new $clazz();
+		return $ret;
+	}
 
-        foreach ($from as $key => $value) {
-            if (is_array($value) && count(array_keys($value))) {
-                $newClazz = "Simplify_" . Tools::ucfirst($key);
-                if (!class_exists($newClazz, false)) {
-                    $newClazz = 'stdClass';
-                }
+	/**
+	 * @ignore
+	 */
+	public function convertFromHashToObject($from, $to_clazz)
+	{
+		$clazz = 'stdClass';
+		$to_clazz = 'Simplify'.$to_clazz;
+		if ('stdClass' != $to_clazz && class_exists("{$to_clazz}", false))
+			$clazz = '{$to_clazz}';
 
-                $object->$key = $this->convertFromHashToObject($value, $newClazz);
-            } else {
-                $object->$key = $value;
-            }
-        }
+		$object = new $clazz();
 
-        return $object;
-    }
+		foreach ($from as $key => $value)
+		{
+			if (is_array($value) && count(array_keys($value)))
+			{
+				$new_clazz = 'Simplify'.Tools::ucfirst($key);
 
-    /**
-     * @ignore
-     */
-    public function getUrl($publicKey, $action, $object)
-    {
-        $url = $this->fixUrl(Simplify::$apiBaseSandboxUrl);
-        if ($this->isLiveKey($publicKey)) {
-            $url = $this->fixUrl(Simplify::$apiBaseLiveUrl);
-        }
-        $url = $this->fixUrl($url) . urlencode(lcfirst($object->getClazz())) . '/';
+				if (!class_exists($new_clazz, false))
+					$new_clazz = 'stdClass';
 
-        $queryParams = array();
-        if ($action == "show") {
-            $url .= urlencode($object->id);
-        } elseif ($action == "list") {
-            $queryParams = array_merge($queryParams, array('max' => $object->max, 'offset' => $object->offset));
-            if (is_array($object->filter) && count(array_keys($object->filter))) {
-                foreach ($object->filter as $key => $value) {
-		    $queryParams["filter[$key]"] = $value;
-                }
-            }
-            if (is_array($object->sorting) && count(array_keys($object->sorting))) {
-                foreach ($object->sorting as $key => $value) {
-                    $queryParams["sorting[$key]"] = $value;
-                }
-            }
-            $query = http_build_query($queryParams);
-            if ($query != '') {
-                if (strpos($url, '?', Tools::strlen($url)) === false) $url .= '?';
-                $url .= $query;
-            }
+				$object->$key = $this->convertFromHashToObject($value, $new_clazz);
+			}
+			else
+				$object->$key = $value;
+		}
 
-        } elseif ($action == "delete") {
-            $url .= urlencode($object->id);
-        } elseif ($action == "update") {
-            $url .= urlencode($object->id);
-        } elseif ($action == "create") {
-        }
-        return $url;
-    }
+		return $object;
+	}
 
-    /**
-     * @ignore
-     */
-    public function getMethod($action)
-    {
-        if (array_key_exists(Tools::strtolower($action), self::$methodMap)) {
-            return self::$methodMap[Tools::strtolower($action)];
-        }
-        return 'GET';
-    }
+	/**
+	 * @ignore
+	 */
+	public function getUrl($public_key, $action, $object)
+	{
+		$url = $this->fixUrl(Simplify::$api_base_sandbox_url);
+		if ($this->isLiveKey($public_key))
+			$url = $this->fixUrl(Simplify::$api_base_live_url);
 
-    /**
-     * @ignore
-     */
-    private function execute($action, $object, $authentication)
-    {
-        $http = new Simplify_HTTP();
+		$url = $this->fixUrl($url).urlencode(lcfirst($object->getClazz())).'/';
 
-        return $http->apiRequest($this->getUrl($authentication->publicKey, $action, $object), $this->getMethod($action),
-            $authentication, Tools::jsonEncode($object->getProperties()));
-    }
+		$query_params = array();
+		if ($action == 'show')
+			$url .= urlencode($object->id);
+		elseif ($action == 'list')
+		{
+			$query_params = array_merge($query_params, array('max' => $object->max, 'offset' => $object->offset));
+			if (is_array($object->filter) && count(array_keys($object->filter)))
+			{
+				foreach ($object->filter as $key => $value)
+					$query_params["filter[$key]"] = $value;
+			}
+			if (is_array($object->sorting) && count(array_keys($object->sorting)))
+			{
+				foreach ($object->sorting as $key => $value)
+					$query_params["sorting[$key]"] = $value;
+			}
+			$query = http_build_query($query_params);
+			if ($query != '')
+			{
+				if (strpos($url, '?', Tools::strlen($url)) === false) $url .= '?';
+				$url .= $query;
+			}
 
-    /**
-     * @ignore
-     */
-    public function jwsDecode($hash, $authentication)
-    {
-        $http = new Simplify_HTTP();
+		}
+		elseif ($action == 'delete')
+			$url .= urlencode($object->id);
+		elseif ($action == 'update')
+			$url .= urlencode($object->id);
 
-        $data = $http->jwsDecode($authentication, $hash);
+		return $url;
+	}
 
-        return Tools::jsonDecode($data, true);
-    }
+	/**
+	 * @ignore
+	 */
+	public function getMethod($action)
+	{
+		if (array_key_exists(Tools::strtolower($action), self::$method_map))
+			return self::$method_map[Tools::strtolower($action)];
 
-    /**
-     * @ignore
-     */
-    private function fixUrl($url)
-    {
-        if ($this->endsWith($url, '/')) {
-            return $url;
-        }
-        return $url . '/';
-    }
+		return 'GET';
+	}
 
-    /**
-     * @ignore
-     */
-    private function isLiveKey($k) {
-        return strpos($k, "lvpb") === 0;
-    }
+	/**
+	 * @ignore
+	 */
+	private function execute($action, $object, $authentication)
+	{
+		$http = new SimplifyHTTP();
 
-    /**
-     * @ignore
-     */
-    private function endsWith($s, $c)
-    {
-        return Tools::substr($s, -Tools::strlen($c)) == $c;
-    }
+		return $http->apiRequest($this->getUrl($authentication->public_key, $action, $object), $this->getMethod($action),
+			$authentication, Tools::jsonEncode($object->getProperties()));
+	}
 
-    /**
-     * Helper function to build the Authentication object for backwards compatibility.
-     * An array of all the arguments passed to one of the API functions is checked against what
-     * we expect to received.  If it's greater, then we're assuming that the user is using the older way of
-     * passing the keys. i.e as two separate strings.  We take those two string and create the Authentication object
-     *
-     * @ignore
-     * @param $authentication
-     * @param $args
-     * @param $expectedArgCount
-     * @return Simplify_Authentication
-     */
-    static public function buildAuthenticationObject($authentication = null, $args, $expectedArgCount){
+	/**
+	 * @ignore
+	 */
+	public function jwsDecode($hash, $authentication)
+	{
+		$http = new SimplifyHTTP();
 
-        if(sizeof($args) > $expectedArgCount) {
-            $authentication = new Simplify_Authentication($args[$expectedArgCount-1], $args[$expectedArgCount]);
-        }
+		$data = $http->jwsDecode($authentication, $hash);
 
-        if ($authentication == null){
-            $authentication = new Simplify_Authentication();
-        }
+		return Tools::jsonDecode($data, true);
+	}
 
-        // check that the keys have been set, if not use the global keys
-        if ( empty($authentication->publicKey)){
-            $authentication->publicKey = Simplify::$publicKey;
-        }
-        if ( empty($authentication->privateKey)){
-            $authentication->privateKey = Simplify::$privateKey;
-        }
+	/**
+	 * @ignore
+	 */
+	private function fixUrl($url)
+	{
+		if ($this->endsWith($url, '/'))
+			return $url;
 
-        return $authentication;
-    }
+		return $url.'/';
+	}
+
+	/**
+	 * @ignore
+	 */
+	private function isLiveKey($k)
+	{
+		return strpos($k, 'lvpb') === 0;
+	}
+
+	/**
+	 * @ignore
+	 */
+	private function endsWith($s, $c)
+	{
+		return Tools::substr($s, -Tools::strlen($c)) == $c;
+	}
+
+	/**
+	 * Helper function to build the Authentication object for backwards compatibility.
+	 * An array of all the arguments passed to one of the API functions is checked against what
+	 * we expect to received.  If it's greater, then we're assuming that the user is using the older way of
+	 * passing the keys. i.e as two separate strings.  We take those two string and create the Authentication object
+	 *
+	 * @ignore
+	 * @param $authentication
+	 * @param $args
+	 * @param $expected_arg_count
+	 * @return SimplifyAuthentication
+	 */
+	public static function buildAuthenticationObject($authentication = null, $args, $expected_arg_count)
+	{
+		if (count($args) > $expected_arg_count)
+			$authentication = new SimplifyAuthentication($args[$expected_arg_count - 1], $args[$expected_arg_count]);
+
+		if ($authentication == null)
+			$authentication = new SimplifyAuthentication();
+
+		// check that the keys have been set, if not use the global keys
+		if (empty($authentication->public_key))
+			$authentication->public_key = Simplify::$public_key;
+
+		if (empty($authentication->private_key))
+			$authentication->private_key = Simplify::$private_key;
+
+		return $authentication;
+	}
 
 }
 

@@ -12,7 +12,7 @@
  * Neither the name of the MasterCard International Incorporated nor the names of its 
  * contributors may be used to endorse or promote products derived from this software 
  * without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY 
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
  * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
  * SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
@@ -32,27 +32,27 @@
 /**
  * Constant values.
  */
-class Simplify_Constants
+class SimplifyConstants
 {
-    /**
-     * @var string VERSION SDK version information.
-     */
-    const VERSION = '1.1.0';
+	/**
+	 * @var string VERSION SDK version information.
+	 */
+	const VERSION = '1.1.0';
 
-    /**
-     * @var string API_BASE_LIVE_URL URL for the live API endpoint
-     */
-    const API_BASE_LIVE_URL = 'https://api.simplify.com/v1/api';
+	/**
+	 * @var string API_BASE_LIVE_URL URL for the live API endpoint
+	 */
+	const API_BASE_LIVE_URL = 'https://api.simplify.com/v1/api';
 
-    /**
-     * @var string API_BASE_SANDBOX_URL URL for the sandbox API endpoint
-     */
-    const API_BASE_SANDBOX_URL = 'https://sandbox.simplify.com/v1/api';
+	/**
+	 * @var string API_BASE_SANDBOX_URL URL for the sandbox API endpoint
+	 */
+	const API_BASE_SANDBOX_URL = 'https://sandbox.simplify.com/v1/api';
 
-    /**
-     * @var string OAUTH_BASE_URL URL for the oauth enpoint
-     */
-    const OAUTH_BASE_URL = 'https://www.simplify.com/commerce/oauth';
+	/**
+	 * @var string OAUTH_BASE_URL URL for the oauth enpoint
+	 */
+	const OAUTH_BASE_URL = 'https://www.simplify.com/commerce/oauth';
 }
 
 ?>
