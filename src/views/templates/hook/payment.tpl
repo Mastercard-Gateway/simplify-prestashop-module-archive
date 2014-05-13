@@ -31,9 +31,16 @@
 	var simplifyPublicKey = "{$simplify_public_key|escape}", 
 	simplifyFirstname = "{$firstname|escape}", simplifyLastname = "{$lastname|escape}", simplifyCity = "{$city|escape}", simplifyAddress1 = "{$address1|escape}", simplifyAddress2 = "{$address2|escape}", simplifyState = "{$state|escape}", simplifyPostcode = "{$postcode|escape}";
 </script>
-<div class="simplifyFormContainer">
-	<h3><img alt="Secure Icon" class="secure-icon" src="{$module_dir|escape}img/secure-icon.png" />Pay by Credit Card <span id="simplify-test-mode-msg" style="display:none;"><img alt="Secure Icon" class="warning-icon" src="{$module_dir|escape}img/warning.png" /> This is a test payment</span></h3>
-	<div id="simplify-no-keys-msg" class="msg-container center" style="display:none"><img alt="Secure Icon" class="warning-icon" src="{$module_dir|escape}img/warning.png" /> Payment Form not configured correctly. Please contact support.</div>
+<div class="simplifyFormContainer box">
+	<div class="clearfix">
+		<h3 class="left" style="margin-top: 15px;font-size:23px">Pay by Credit Card</h3>
+		<img alt="Secure Icon" class="secure-icon" src="{$module_dir|escape}img/secure-icon.png" style="margin:15px 0 0 5px" />
+		<div class="error-msg">
+			<span id="simplify-test-mode-msg" class="test-msg">( TEST PAYMENT )</span>
+			<span id="simplify-no-keys-msg" class="msg-container" style="display:none;color:">Payment Form not configured correctly. Please contact support.</span>
+		</div>
+	</div>
+	
 	<div id="simplify-ajax-loader"> 
 		<span>Your payment is being processed...</span>
 		<img src="{$module_dir|escape}img/ajax-loader.gif" alt="Loader Icon" />
@@ -110,17 +117,23 @@
 					</div>
 					<br />
 					{if isset($show_save_customer_details_checkbox)}
-					<div>
+					<div class="clearfix">
 						<input type="checkbox" name="saveCustomer">
 						<span id="saveCustomerLabel" style="margin-left: 5px">Save your credit card details securely?</span>	
 						<span id="updateCustomerLabel" style="margin-left: 5px;display:none">Update your credit card details securely?</span>
 					</div>
 					{/if}
 					<div>
-						<img alt="Secure Icon" class="secure-icon" src="{$module_dir|escape}img/credit-cards.png" />
+						<img alt="Secure Icon" class="payment-cards" src="{$module_dir|escape}img/credit-cards.png" />
 					</div>
 				</div>
 			</div>
-		<input type="submit" class="exclusive simplify-submit-button" value="Submit Payment"/>
+			<button type="submit" class="right button btn btn-default standard-checkout button-medium simplify-submit-button" style="">
+				<span>Submit Payment <i class="icon-chevron-right"></i></span>
+			</button>
+		<!-- <input type="submit" class="exclusive simplify-submit-button" value="Submit Payment"/> -->
+		<!-- <button type="submit" class="right button btn btn-default standard-checkout button-medium simplify-submit-button" style="">
+			<span>Submit Payment <i class="icon-chevron-right"></i></span>
+		</button> -->
 	</form>
 </div>
