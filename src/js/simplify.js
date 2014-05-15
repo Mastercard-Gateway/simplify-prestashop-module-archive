@@ -136,8 +136,8 @@ $(document).ready(function() {
 				card: {
 					number: $(".simplify-card-number").val().trim().replace(/\s+/g, ''),
 					cvc: $(".simplify-card-cvc").val(),
-					expMonth: $("#simplify-cc-details select[name='Date_Month'").val(),
-					expYear: $("#simplify-cc-details select[name='Date_Year'").val().substring(2),
+					expMonth: $("#simplify-cc-details select[name='Date_Month']").val(),
+					expYear: $("#simplify-cc-details select[name='Date_Year']").val().substring(2),
 					name: simplifyFirstname + ' ' + simplifyLastname,
 					addressCity: simplifyCity,
 					addressLine1: simplifyAddress1,
