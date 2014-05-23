@@ -24,7 +24,7 @@
  * SUCH DAMAGE.
  *
  *  @author    MasterCard (support@simplify.com)
- *  @version   Release: 1.0.1
+ *  @version   Release: 1.0.2
  *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
  *  @license   See licence.txt
  */
@@ -50,7 +50,7 @@ class SimplifyCommerce extends PaymentModule
 	{
 		$this->name = 'simplifycommerce';
 		$this->tab = 'payments_gateways';
-		$this->version = '1.0.1';
+		$this->version = '1.0.2';
 		$this->author = 'MasterCard';
 		$this->need_instance = 0;
 

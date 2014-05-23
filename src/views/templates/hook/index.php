@@ -24,7 +24,7 @@
  * SUCH DAMAGE.
  *
  *  @author    MasterCard (support@simplify.com)
- *  @version   Release: 1.0.1
+ *  @version   Release: 1.0.2
  *  @copyright 2014, MasterCard International Incorporated. All rights reserved. 
  *  @license   See licence.txt
  */

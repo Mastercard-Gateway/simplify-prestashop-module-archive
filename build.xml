@@ -31,14 +31,15 @@ SUCH DAMAGE.
   <property name="build" location="build"/>
   <property name="dist" location="dist"/>
   <property name="project-name" value="simplifycommerce"/>
+  <property name="project-version" value="1.0.2"/>
   <property name="sdk-path" location="${build}/${project-name}/simplifycommerce-sdk-php.tgz"/>
   <property name="base.url" value="https://www.simplify.com/commerce"/>
-  <property name="php.sdk.version" value="1.1.0"/>
+  <property name="php.sdk.version" value="1.1.2"/>
 
   <!-- Main build entry point to zip module up -->
-  <target name="dist" depends="clean, download.sdk, prepare" description="generate the distribution" >
+  <target name="dist" depends="clean, prepare" description="generate the distribution" >
     <delete dir="${build}/${project-name}/sdk"/>
-    <zip destfile="${dist}/${project-name}.zip"
+    <zip destfile="${dist}/${project-name}-prestashop-${project-version}.zip"
          basedir="${build}"
 	       includes="*.md *.png **/*"
          excludes="**/*.tgz"/>
@@ -50,7 +51,7 @@ SUCH DAMAGE.
     <delete dir="${build}"/>
   </target>
 
-  <!-- Download the Simplify Commer PHP SDK -->
+  <!-- Download the Simplify Commerce PHP SDK -->
   <target name="download.sdk">
       <mkdir dir="${build}/${project-name}"/>
       <property name="php.sdk.url" value="${base.url}/static/sdk/php/simplifycommerce-sdk-php-${php.sdk.version}.tgz"/>
@@ -67,19 +68,6 @@ SUCH DAMAGE.
       </resources>
     </copy>
 
-    <echo>Unpacking SDK</echo>
-    <untar src="${sdk-path}" dest="${build}/${project-name}/sdk" compression="gzip"/>  
-
-    <dirset dir="${build}/${project-name}/sdk" id="sdk.lib.dir">
-       <include name="**/lib"/>
-    </dirset>
-    <pathconvert property="sdk.lib.dir" refid="sdk.lib.dir"/>
-    <echo>DESTDIR ${sdk.lib.dir}</echo>
-    <copy todir="${build}/${project-name}/lib">
-       <fileset dir="${sdk.lib.dir}">
- 		<include name="**/*.php"/>
-       </fileset>
-    </copy>
   </target>
 
 </project>
