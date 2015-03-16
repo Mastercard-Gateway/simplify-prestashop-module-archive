@@ -1,6 +1,8 @@
-# Simplify Commerce payment module for PrestaShop
+# Simplify Commerce payment module for PrestaShop #
 
 This plugin adds Simplify Commerce as a payment option on your PrestaShop checkout page.
+
+##### Note: As of PrestaShop v1.6, Simplify Commerce is pre-bundled with PrestaShop's core installation. Please head over to this repository for the latest & greatest on Simplify Commerce module source code - <a href="https://github.com/PrestaShop/simplifycommerce">https://github.com/PrestaShop/simplifycommerce</a> #####
 
 ## Installation
 1. If you haven't done so already, <a href="https://github.com/simplifycom/simplify-prestashop-module/releases/latest"> download a release</a> and install the zip file through the PrestaShop admin panel and enable it.
